@@ -1,4 +1,3 @@
- // COUNTDOWN TIMER – reset tiap tengah malam
   function updateCountdown() {
     const now = new Date();
     const midnight = new Date();
@@ -16,13 +15,11 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // SCROLL FADE IN
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // FILTER KATALOG
   function filterKatalog(cat, btn) {
     document.querySelectorAll('.filter-btns .btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -31,7 +28,6 @@
     });
   }
 
-  // SMOOTH SCROLL
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
