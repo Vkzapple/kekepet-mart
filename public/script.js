@@ -1,18 +1,27 @@
-  function updateCountdown() {
-    const now = new Date();
-const midnight = new Date('2025-06-04T23:59:59');
-    let diff = midnight - now;
-    const h = Math.floor(diff / 3600000);
-    diff %= 3600000;
-    const m = Math.floor(diff / 60000);
-    diff %= 60000;
-    const s = Math.floor(diff / 1000);
-    document.getElementById('jam').textContent = String(h).padStart(2,'0');
-    document.getElementById('menit').textContent = String(m).padStart(2,'0');
-    document.getElementById('detik').textContent = String(s).padStart(2,'0');
+function updateCountdown() {
+  const now = new Date();
+  const target = new Date(2026, 5, 4, 23, 59, 59);
+  let diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('jam').textContent = '00';
+    document.getElementById('menit').textContent = '00';
+    document.getElementById('detik').textContent = '00';
+    return;
   }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+
+  const h = Math.floor(diff / 3600000);
+  diff %= 3600000;
+  const m = Math.floor(diff / 60000);
+  diff %= 60000;
+  const s = Math.floor(diff / 1000);
+
+  document.getElementById('jam').textContent = String(h).padStart(2,'0');
+  document.getElementById('menit').textContent = String(m).padStart(2,'0');
+  document.getElementById('detik').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
